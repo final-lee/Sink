@@ -3,7 +3,7 @@ export default eventHandler((event) => {
   if (event.path.startsWith('/api/') && !event.path.startsWith('/api/_') && token !== useRuntimeConfig(event).siteToken) {
     throw createError({
       status: 401,
-      statusText: 'Unauthorized',
+      statusText: useRuntimeConfig(event).siteToken,
     })
   }
   if (token && token.length < 8) {
